@@ -1,0 +1,65 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{product.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img src="{{selectedImage}}" width="100%" height="100%">
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-error" 
+      (click)="deleteFile()">
+      Delete
+    </button>
+    <button *ngIf="seePrevious" type="button" class="btn btn-outline-info" 
+      (click)="navigateBack(true)">
+      Previous
+    </button>
+    <button *ngIf="seeNext" type="button" class="btn btn-outline-info" 
+      (click)="navigate(true)">
+      Next
+    </button>
+  </div>
+</ng-template>
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+  Launch demo modal (click)=setSelectedImage(image)
+</button>
+<div class="ontop-left">
+      <i class="fa fa-arrow-circle-left arrow-back" (click)=navigate(false)></i>
+    </div>
+    <div class="ontop-right">
+      <i class="fa fa-arrow-circle-right arrow-forward" (click)=navigate(true)></i>
+    </div> -->
+<ul id="thumbnailsList">
+  <li *ngFor="let image of product.imageUrl" >
+    <img src="{{image}}" class="tn"
+  width="40%" height="20%"  
+  data-toggle="modal"
+    (click)=open(content,image)>
+  </li>
+</ul>
+<hr>
+
+<pre>{{closeResult}}</pre>
+
+<!--<div class="modal fade" tabindex="-1" role="dialog" id="selectedImageModal" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img *ngIf="selectedImage" src="{{selectedImage}}" >
+      </div>
+    </div>
+  </div>
+</div> 
+<ul id="thumbnailsList">
+  <li *ngFor="let image of product.imageUrl" >
+    <img src="{{image}}" class="tn"
+  width="191" height="146"  
+  data-toggle="modal" data-target="#selectedImageModal"
+    (click)=setSelectedImage(image)>
+  </li>
+</ul>-->
+  

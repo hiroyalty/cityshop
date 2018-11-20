@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-md-6">
+    
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input #title="ngModel" [(ngModel)]="product.title" name="title" id="title" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Title is required.
+        </div>
+      </div> 
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <span class="input-group-addon">€</span>
+          <input #price="ngModel" [(ngModel)]="product.price" name="price" id="price" type="number" class="form-control" required [min]="0">
+        </div>
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+          <div *ngIf="price.errors.required">Price is required.</div>
+          <div *ngIf="price.errors.min">Price should be zero or higher</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
+          <option value=""></option>
+          <option *ngFor="let c of categories$ | async" [value]="c.$key">
+            {{ c.name }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+          Category is required
+        </div>
+      </div>
+      <div *ngIf="currentUpload">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': product?.progress + '%' }"></div>
+        </div>
+        Progress: {{product?.title}} | {{product?.progress[0]}}% Complete
+      </div>
+      <div *ngIf="!id" class="form-group">
+        <label>Select Product Image</label>
+        <input type="file" class="form-control btn btn-outline-success" 
+          (change)="detectFiles($event)">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea #description="ngModel" [(ngModel)]="product.description" 
+          name="description" id="description" rows="3" class="form-control" 
+          placeholder="Put Product description"></textarea>
+        <div *ngIf="description.touched && description.invalid" class="alert alert-danger">
+          Product description is required.
+        </div>
+      </div>
+      <button type="submit" *ngIf="!selectMoreFiles" [disabled]="f.invalid" class="btn btn-primary">Save</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+    </form> 
+  
+  <!--
+    <form [formGroup]="form" (ngSubmit)="save(form.value)">
+      <h2 class="form-signup-heading" align="center">
+        Create / Update Product
+      </h2>
+      <div class="form-group" [ngClass]="{'has-error':!form.controls['title'].valid && form.controls['title'].touched}">
+        <label for="title">Product Name</label>
+        <input id="title" type="text" class="form-control" formControlName="title">
+        <div *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="alert alert-danger">
+          Product Name is required
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':!form.controls['description'].valid && form.controls['description'].touched}">
+        <label for="price">Price</label>
+        <input id="price" type="number" class="form-control" formControlName="price">
+        <div *ngIf="form.controls['price'].hasError('required') && form.controls['price'].touched" class="alert alert-danger">
+          Product Price is required
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':!form.controls['description'].valid && form.controls['description'].touched}">
+        <label for="category">Category</label>
+        <select id="category" class="form-control" formControlName="category">
+        <option value=""></option>
+          <option *ngFor="let c of categories$ | async" [value]="c.$key">
+            {{ c.name }}
+          </option>
+        </select>
+        <div *ngIf="form.controls['category'].hasError('required') && form.controls['category'].touched" class="alert alert-danger">
+          Product Category is required
+        </div>
+      </div>
+      <div *ngIf="currentUpload">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': product?.progress + '%' }"></div>
+        </div>
+        Progress: {{product?.title}} | {{product?.progress}}% Complete
+      </div>
+      <div class="form-group">
+        <label>Select Product Image</label>
+        <input type="file" class="form-control btn btn-outline-success" 
+          (change)="detectFiles($event)">
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':!form.controls['description'].valid && form.controls['description'].touched}">
+        <label for="description">Description</label>
+        <textarea formControlName="description" id="description" rows="4" class="form-control"></textarea>
+        <div *ngIf="form.controls['description'].hasError('required') && form.controls['description'].touched" class="alert alert-danger">
+          Product description is required.
+        </div>
+      </div>
+      <button type="submit" [disabled]="form.invalid && !selectedFiles" class="btn btn-primary">Save</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+    </form> -->
+  </div>
+  <div class="col-md-6">
+    <!--<product-card [product]="product" [show-actions]="false"></product-card>-->
+    <gallery [product]="product"></gallery>
+    <!--<div *ngIf="currentUpload">
+      <div class="progress">
+        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': product?.progress + '%' }"></div>
+      </div>
+      Progress: {{product?.title}} | {{product?.progress}}% Complete
+    </div> -->
+    <div *ngIf="id" class="form-group">
+      <label>Add More Pictures</label>
+      <input type="file" class="form-control btn btn-outline-success" 
+        (change)="detectMoreFiles($event)" multiple>
+    </div>
+    <button type="button" *ngIf="selectMoreFiles" type="submit" (click)="uploadMultiFiles()" class="btn btn-primary">Add Pictures</button>
+  </div>
+</div> 

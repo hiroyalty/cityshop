@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title alert alert-success">Order Details</h4>
+    <p class="card-text alert alert-info">
+      The following are the details of the transaction.
+    </p>
+    <ul *ngIf="order" class="list-group list-group-flush">
+      <li class="list-group-item font-weight-bold"><div class="badge badge-primary">Date Placed</div>
+      <div class="float-right">
+          {{ order.datePlaced | amDateFormat:'LL' }}
+      </div>
+      </li>
+      <li class="list-group-item font-weight-bold"><div class="badge badge-success">Order Shipping Details</div></li>
+      <li class="list-group-item">
+        Ship Order To: 
+        <div class="float-right">
+          {{ order.shipping.name }}
+        </div>
+      </li>
+      <li class="list-group-item">
+        Address 1: 
+        <div class="float-right">
+            {{ order.shipping.addressLine1 }}
+        </div>
+      </li>
+      <li class="list-group-item">
+        Address 2:
+        <div class="float-right">
+          {{ order.shipping.addressLine2 }}
+        </div>
+      </li>
+      <li class="list-group-item">
+        City: 
+        <div class="float-right">
+          {{ order.shipping.city }}
+        </div>
+      </li>
+      <li class="list-group-item font-weight-bold">
+          Order Items
+      </li>
+      <li *ngFor="let item of order.items" class="list-group-item">
+        {{ item.quantity }} x {{ item.product.title }}
+        <div class="float-right">
+          {{ item.totalPrice | currency: 'EUR': true }}
+        </div>
+      </li>
+      <li class="list-group-item font-weight-bold">
+        Grand Total
+        <div class="float-right">
+          {{ order.grandTotalPrice | currency: 'EUR': true }}
+        </div>
+      </li>
+      <li class="list-group-item font-weight-bold"><div class="badge badge-success">Order Placed by</div></li>
+      <li *ngIf="apUser" class="list-group-item">
+        Name: 
+        <div class="float-right">
+          {{ apUser?.name }}
+        </div>
+      </li>
+      <li class="list-group-item">
+        Email: 
+        <div class="float-right">
+          {{ apUser?.email }} 
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+              

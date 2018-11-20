@@ -1,0 +1,35 @@
+<div class="row">
+  <div *ngIf="product" class="card">
+    <h4 class="card-header bolden">
+      {{product.title}}
+    </h4>
+    <div class="card-body">
+      <ngb-carousel>
+        <ng-template *ngFor="let image of product.imageUrl" ngbSlide>
+          <img [src]="image" alt="product.title">
+          <div class="carousel-caption">
+            <h3>{{product.title}}</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{product.description}}</p>
+      <div *ngIf="cart$ | async as cart" class="card-footer">
+        <button 
+          *ngIf="cart.getQuantity(product) === 0; else updateQuantity"
+          (click)="addToCart()"
+          class="btn btn-primary">Add to Cart</button> 
+        <ng-template #updateQuantity>
+          <product-quantity [product]="product" [shopping-cart]="cart">
+          </product-quantity>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  
+  <!--<div class="col">
+  </div><a href="#" class="btn btn-primary">Add to Cart</a>
+  <div class="col">
+  </div> -->
+</div>

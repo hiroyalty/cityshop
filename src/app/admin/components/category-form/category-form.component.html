@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input #name="ngModel" [(ngModel)]="category.name" name="name" id="name" type="text" 
+          class="form-control" appLowerCase required>
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+          Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category Description</label>
+        <textarea #description="ngModel" [(ngModel)]="category.description" name="description" id="description"
+        class="form-control" placeholder="Give Some decription of prodcuts in this category" required></textarea>
+        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+          Category Description is required.
+        </div>
+      </div>
+      <!--<div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input #imageUrl="ngModel" [(ngModel)]="category.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
+        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+          <div *ngIf="imageUrl.errors.required">Image Url is required</div>
+          <div *ngIf="imageUrl.errors.url">Please provide a correct Url</div>
+        </div>
+      </div> -->
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

@@ -1,0 +1,89 @@
+.footer {
+	position: absolute;
+	bottom: 0;
+	background-color: #f2f3f7;
+	color: #595959;
+	width: 100%;
+	padding: 15px 10px;
+	font-size: 13px;
+} 
+.footer .finelink, .footer .logo-font {
+	color: #2d532d;
+	text-decoration: none;
+}
+.pushright {
+	text-align: right;
+}
+/*
+.attribution a {
+	font-size:12px;
+	color: #00ff40;
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-top: -150px;   
+  	/* Set the fixed height of the footer here */
+    /*background-color: #f2f3f7;
+	padding: 30px 20px;
+	color: rgba(255,255,255,1.00);
+	margin-bottom: 10px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 6px;
+}
+.footer .footer-brand, .footer .footer-nav, .footer .footer-social, .footer .footer-ns { padding:10px 10px; }
+.footer .footer-nav, .footer .footer-social, .footer .footer-ns { border-color: transparent; }
+.footer .footer-brand h2 { margin:0px 0px 10px; }
+.footer .footer-brand p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+.footer .footer-nav ul.pages { list-style:none; padding:0px; }
+.footer .footer-nav ul.pages li { padding:5px 0px;}
+.footer .footer-nav ul.pages a { color:rgba(255,255,255,1.00); font-weight:bold; text-transform:uppercase; }
+.footer .footer-nav ul.pages a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+.footer .footer-nav h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+
+.footer .footer-nav ul.list { list-style:none; padding:0px; }
+.footer .footer-nav ul.list li { padding:5px 0px;}
+.footer .footer-nav ul.list a { color:rgba(255,255,255,0.80); }
+.footer .footer-nav ul.list a:hover { color:rgba(255,255,255,0.60); text-decoration:none; }
+
+.footer .footer-social ul { list-style:none; padding:0px; }
+.footer .footer-social h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+.footer .footer-social li { padding:5px 4px;}
+.footer .footer-social a { color:rgba(255,255,255,1.00);}
+.footer .footer-social a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+ 
+.footer .footer-ns h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+
+.myname {
+    color: antiquewhite;
+}
+
+.mypad {
+    padding-left: 5px;
+}
+
+.mytoppad {
+	padding-top: 10px;
+}
+.footer .footer-ns p { font-size:12px; color:rgba(255,255,255,0.70); } 
+
+@media (min-width: 768px) {
+	.footer .footer-nav, .footer .footer-social, .footer .footer-ns { border-left:solid 1px rgba(255,255,255,0.10); }
+}*/

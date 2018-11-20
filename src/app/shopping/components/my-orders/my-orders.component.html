@@ -1,0 +1,51 @@
+<h1>Orders</h1>
+<!--<table *ngIf="orders$ | async as orders" class="table">-->
+<!--<table class="table">
+  <thead>
+    <tr>
+      <th>Shipped To</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.shipping.name }}</td>
+      <td>{{ order.datePlaced | amDateFormat:'LL'}}</td>
+      <td><a [routerLink]="['/order-details/', order.$key]">View</a></td>
+    </tr>
+  </tbody>
+</table>-->
+<p>
+    <input
+      #query
+      (keyup)="filter(query.value)"
+      type="text" class="form-control" placeholder="Search...">
+  </p>
+  <data-table
+    [items]="items"
+    [itemCount]="itemCount"
+    (reload)="reloadItems($event)"
+  > 
+    <data-table-column
+      [property]="'shippingname'"
+      [header]="'Shipped To'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+    </data-table-column>
+    <data-table-column
+      [property]="'ddate'"
+      [header]="'Date'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+    </data-table-column>
+    <data-table-column
+      [property]="'$key'"
+    >
+      <ng-template #dataTableCell let-item="item">
+        <a [routerLink]="['/order-details/', item.$key]">View</a>
+      </ng-template>
+    </data-table-column>
+  </data-table>

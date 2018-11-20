@@ -1,0 +1,29 @@
+.card { 
+    margin-bottom: 30px;
+  }
+  
+  .card-img-top { 
+    height: 240px;
+  }
+  
+  .card-footer {
+    padding: 0;
+    background: #fff;
+  }
+  
+  .card-footer button {
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  
+  .btn.btn-secondary.btn-block.custom-btn { 
+    background-color: #8000ff;
+    border-color: #8000ff;
+  }
+
+  .btn.btn-info.btn-sm.cus-btn {
+    float: right;
+    background-color: #ff8000;
+    border-color: #ff8000;
+  }
+  

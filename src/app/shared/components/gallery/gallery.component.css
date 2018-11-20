@@ -1,0 +1,34 @@
+ul { padding:0; margin:20px auto}
+  	li { display:inline;}
+        .tn{ 
+	   margin:2px 0px;
+	   box-shadow:#999 1px 1px 3px 1px; 
+	   cursor: pointer 
+	}
+	.arrow-back, .arrow-forward{
+		opacity:0.9;
+		background-color: #8000ff;
+		padding:5px;
+		color:white;
+		cursor:pointer;
+	}
+	.ontop-right, {
+		color: blue;
+            width: 5%;
+            border: 2px solid black;
+            position: relative;
+            float: left;
+	}
+	/*.arrow-back, .arrow-forward{
+		position: relative;
+		opacity:0.9;
+		background-color:black;
+		padding:5px;
+		top:190;
+		color:white;
+		cursor:pointer;
+	}
+	 
+	.arrow-forward{
+		float: left;
+	}*/

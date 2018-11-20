@@ -1,0 +1,17 @@
+.table .tquantity {
+    width: 40%;
+    text-align: center
+}
+.table .tprice {
+    width: 20%
+}
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-size: cover;
+}
+.card { 
+    width: 80%;
+    margin-bottom: 80px;
+} 

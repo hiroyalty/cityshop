@@ -1,0 +1,150 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">
+          Personal Settings
+        </div>
+        <ul class="list-group list-group-flush">
+          <a class="list-group-item list-group-item-action"
+            (click)="activateProfile()"
+            [class.active]="updateProfile"
+            [class.inactive]="!updateProfile">Profile</a>
+
+          <a class="list-group-item list-group-item-action"
+            (click)="activateAddress()"
+            [class.active]="updateAddress"
+            [class.inactive]="!updateAddress">Update Address</a>
+
+          <a class="list-group-item list-group-item-action"
+            (click)="activatePassword()"
+            [class.active]="changepassword"
+            [class.inactive]="!changepassword">Password Update</a>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form *ngIf="updateProfile && curUser" #fprofile="ngForm" (ngSubmit)="updateprofile(fprofile)">
+        <!--<p-growl [value]="getMessages()"></p-growl>
+        <div *ngIf=errorMessage class="alert alert-danger">
+          {{ errorMessage }} [formGroup]="form.getForm()" (ngSubmit)="createUserAccount()"
+        </div> -->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input #name="ngModel" [(ngModel)]="curUser.name" name="name" id="name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input #phoneNumber="ngModel" [(ngModel)]="curUser.phoneNumber" name="phonenumber" id="phonenumber" type="text" class="form-control">
+        </div>
+        <div></div>
+        <button type="submit" class="btn btn-primary" [disabled]="!fprofile.valid">Update Profile</button>
+      </form>
+
+      <form *ngIf="curUser && updateAddress" #faddress="ngForm" (ngSubmit)="updateaddress(faddress)">
+        <!--addresses -->
+        <div *ngIf="displayAddress" ngModelGroup="address" class="card card-default">
+          <div class="card-header">
+            <span>Address</span>
+            <span class="pull-right">
+              <button 
+              type="button"
+              (click)="showaddress()"
+              class="btn btn-info btn-sm">Update Address</button>
+              <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="form-group col-xs-6">
+              <label for="street">Street: {{ curUser.address?.street || '' }}</label>
+            </div>
+            <hr>
+            <div class="form-group col-xs-6">
+              <label for="city">City: {{ curUser.address?.city || '' }}</label>
+            </div>
+            <hr>
+            <div class="form-group col-xs-6">
+              <label for="region">Region / State: {{ curUser.address?.region || '' }}</label>
+            </div>
+            <hr>
+            <div class="form-group col-xs-6">
+              <label for="zip">ZIP: {{ curUser?.address?.zip || '' }}</label>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!displayAddress" ngModelGroup="address" class="card card-default">
+          <div class="card-header">
+            <span>Address</span>
+            <span class="pull-right">
+              <button
+              type="button" 
+              (click)="showaddress()"
+              class="btn btn-info btn-sm">See Current Address</button>
+              <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="form-group col-xs-6">
+              <label for="street">Street</label>
+              <input ngModel #street="ngModel" name="street" id="street" type="text" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="street.touched && street.invalid">
+                Street is Required
+              </div>
+            </div>
+            <div class="form-group col-xs-6">
+              <label for="city">City</label>
+              <input ngModel #city="ngModel" name="city" id="city" type="text" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+                City is Required
+              </div>
+            </div>
+            <div class="form-group col-xs-6">
+              <label for="region">Region / State</label>
+              <input ngModel #region="ngModel" name="region" id="region" type="text" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="region.touched && region.invalid">
+                Region is Required
+              </div>
+            </div>
+            <div class="form-group col-xs-6">
+              <label for="zip">ZIP</label>
+              <input ngModel #zip="ngModel" name="zip" id="zip" type="text" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="zip.touched && zip.invalid">
+                Zip is Required
+              </div>
+            </div>
+          </div>
+        </div>
+        <button *ngIf="!displayAddress" type="submit" class="btn btn-primary" [disabled]="!faddress.valid">Update Address</button>
+      </form>
+
+      <form *ngIf="changepassword && curUser" #fpass="ngForm" (ngSubmit)="updatechangepassword(fpass)">
+        <div class="form-group">
+          <label>Old Password</label>
+          <input ngModel type="password" #oldpassword="ngModel" class="form-control" name="oldpassword" id="oldpassword" required>
+          <div class="alert alert-danger" *ngIf="oldpassword.touched && oldpassword.invalid">
+            Old Password is required
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Password</label>
+          <input ngModel type="password" #password="ngModel" class="form-control" name="password" id="password" required>
+          <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+            New Password is required
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Confirm New Password</label>
+          <input ngModel type="password" #confirmpassword="ngModel" class="form-control" name="confirmpassword" id="confirmpassword" [equalTo]="password">
+          <div class="alert alert-danger" *ngIf="confirmpassword.touched && confirmpassword.invalid">
+            Confirm password is wrong
+          </div>
+        </div>
+        <button class="btn btn-info">Update Password</button>
+      </form>
+    
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

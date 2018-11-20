@@ -1,0 +1,11 @@
+.row {
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    float: none;  
+}
+.card-header.bolden {
+    text-transform: capitalize;
+    font-family: 'Verdana', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, sans-serif;
+    font-weight: 400;
+}

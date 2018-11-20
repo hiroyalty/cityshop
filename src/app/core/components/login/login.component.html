@@ -1,0 +1,62 @@
+<div class="login-page">
+  <div class="forma">
+    <h4 class="intro"><span></span>Enter into FarbsWorld</h4>
+    <hr>
+    <div style="margin-top: 10px;">
+      <div>
+        <button (click)="loginFacebook()" type="button" class="btn btn-lg btn-social btn-facebook">
+          <i class="fa fa-facebook -f" aria-hidden="true"></i> Login with Facebook
+        </button>
+      </div>
+      <div style="margin-top: 10px;"></div>
+      <div>
+        <button (click)="loginGoogle()" type="button" class="btn btn-lg btn-social btn-google">
+          <i class="fa fa-google" style="color:#db4437" aria-hidden="true"></i> Login with Google
+        </button>
+      </div>
+      <div style="margin-top: 20px;"></div>
+      <!--<form action="/register" class="register-form" method="post" >
+        <input type="text" name="email" placeholder="Email"/>
+        <input type="password" name="password" placeholder="password"/>
+        <input type="text" name="street" placeholder="Street"/>
+        <input type="text" name="city" placeholder="City"/>
+        <button type="submit">create</button>
+        <p class="message">Already registered? <a routerLink="/signup" id="signbtn">Sign In</a></p>
+      </form>-->
+      <form #f="ngForm" (ngSubmit)="loginEmail(f)">
+        <!--<div class="row">
+        <p-growl [value]="getMessages()"></p-growl>
+        </div> 
+        <div *ngIf=errorMessage class="alert alert-danger">
+          Invalid Username and/or Password<!--{{ errorMessage }} 
+        </div> -->
+        <div class="form-group">
+          <input #email="ngModel" type="email" class="form-control" [(ngModel)]="user.email" name="email" id="email"
+            placeholder="Email" required>
+          <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            Email is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <input #password="ngModel" type="password" class="form-control" [(ngModel)]="user.password" name="password"
+            id="password" placeholder="Password" required>
+          <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+            Password is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-lg btn-social mybutton" type="submit"
+            [disabled]="!f.valid">
+            <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> login
+          </button>
+        </div>
+        <div style="margin-top: 10px;"></div>
+        
+        <p class="message">Not registered? <a routerLink="/signup">Create an account</a></p>
+      </form>
+      <!--<pre>{{ f.form.value | json }}</pre> <!-- Value of whole form -->
+      <!--<pre>User name: {{ email.value }}</pre> <!-- Value of userName field -->
+      <!--<pre>Valid form? {{ f.form.valid | json }}</pre> <!-- Validity of whole form -->
+    </div>
+  </div>
+</div>
